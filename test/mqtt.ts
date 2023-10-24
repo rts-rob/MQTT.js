@@ -35,6 +35,14 @@ describe('mqtt', () => {
 			c.end((err) => done(err))
 		})
 
+		it('should return an MqttClient with password option set', function _test(t, done) {
+			const c = mqtt.connect('mqtt://:pass@localhost:1883')
+
+			c.should.be.instanceOf(mqtt.MqttClient)
+			c.options.should.have.property('password', 'pass')
+			c.end((err) => done(err))
+		})
+
 		it('should return an MqttClient with username and password options set', function _test(t, done) {
 			const c = mqtt.connect('mqtt://user@localhost:1883')
 

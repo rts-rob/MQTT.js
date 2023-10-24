@@ -42,7 +42,11 @@ function parseAuthOptions(opts: IClientOptions) {
 		if (matches) {
 			opts.username = matches[1]
 			opts.password = matches[2]
+		} else if (opts.auth.startsWith(':')) {
+			// Password only, no username provided
+			opts.password = opts.auth.slice(1)
 		} else {
+			// Username only, no password provided
 			opts.username = opts.auth
 		}
 	}
